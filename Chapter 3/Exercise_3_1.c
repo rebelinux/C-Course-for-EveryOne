@@ -3,6 +3,12 @@
 // Use a switch statement (it will be a short switch statement). You can assume that the t variable contains enough space. 
 // Make sure to properly terminate t with the end-of-string marker '\0'.
 
+// Expected output from your program:
+    // Hello world
+    // Hello world\n
+    // Hello\tworld\n
+    // Hello\tworld\nHave a nice\tday\n
+
 #include <stdio.h>
 int main() {
   char t[1000];
@@ -20,9 +26,27 @@ int main() {
 void expand(s, t)
 char s[], t[];
 {
-    int i, j;
+  int i, j;
+
+  char tab = '\\';
+  char tletter = 't';
+  char newline = 'n';
+
   for(i=0, j=0; s[i]; i++) {
-    t[j++] = s[i];
+    switch (s[i])
+    {
+      case '\n':
+        t[j++] = tab;
+        t[j++] = newline;
+        break;
+      case '\t':
+        t[j++] = tab;
+        t[j++] = tletter;
+        break;
+      default:
+        t[j++] = s[i];
+        break;
+    }
   }
   t[j] = '\0';
 }
