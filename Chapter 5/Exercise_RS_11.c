@@ -19,15 +19,24 @@ void py_rstrip(inp)
 {
     int len = strlen(inp);
     int i;
-    char *px = inp;
+    char *px = &inp[len-1];
 
-
-    for (i = len -1; i <= len; i--) {
-        if (px[i] == ' ') {
-            px[i] = 0;
+    while (*px) {
+        if (*px == ' ') {
+            *px = 0;
         } else{
             break;
         }
+        px--;
     }
+
+
+    // for (i = len -1; i <= len; i--) {
+    //     if (px[i] == ' ') {
+    //         px[i] = 0;
+    //     } else{
+    //         break;
+    //     }
+    // }
 }
 
